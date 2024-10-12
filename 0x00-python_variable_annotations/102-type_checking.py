@@ -3,7 +3,7 @@
 from typing import Tuple, List
 
 
-def zoom_array(lst: Tuple, factor: int = 2) -> Tuple:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """zoom array function"""
     zoomed_in: Tuple = [
         item for item in lst
@@ -16,4 +16,4 @@ array = [12, 72, 91]
 
 zoom_2x = zoom_array(array)
 
-zoom_3x = zoom_array(array, 3.0)
+# zoom_3x = zoom_array(array, 3.0)
