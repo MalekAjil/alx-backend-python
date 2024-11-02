@@ -15,11 +15,13 @@ class TestAccessNestedMap (TestCase):
         """test_access_nested_map_exception mothod"""
         assertRaises KeyError
 
+
 class TestGetJson(unittest.TestCase):
     """TestGetJson class"""
     def test_get_json():
         """test get_json method"""
         assert get_json == test_payload
+
 
 class TestMemoize(unittest.TestCase):
     """TestMemoize class"""
