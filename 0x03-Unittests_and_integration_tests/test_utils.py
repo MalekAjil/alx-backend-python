@@ -9,3 +9,8 @@ class TestAccessNestedMap (TestCase):
     @parameterized.expand
     def test_access_nested_map():
         """test access_nested_map method"""
+
+    @parameterized.expand
+    def test_access_nested_map_exception():
+        """test_access_nested_map_exception mothod"""
+        assertRaises KeyError
