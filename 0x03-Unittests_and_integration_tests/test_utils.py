@@ -6,3 +6,6 @@ from utils import access_nested_map
 
 class TestAccessNestedMap (TestCase):
     """TestAccessNestedMap class"""
+    @parameterized.expand
+    def test_access_nested_map():
+        """test access_nested_map method"""
