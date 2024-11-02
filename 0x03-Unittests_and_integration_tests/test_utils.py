@@ -6,4 +6,3 @@ from utils import access_nested_map
 
 class TestAccessNestedMap (TestCase):
     """TestAccessNestedMap class"""
-
