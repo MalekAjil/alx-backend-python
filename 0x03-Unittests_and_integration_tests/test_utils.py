@@ -15,7 +15,7 @@ from typing import (
 
 class TestAccessNestedMap (unittest.TestCase):
     """TestAccessNestedMap class"""
-    
+
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
@@ -37,36 +37,41 @@ class TestAccessNestedMap (unittest.TestCase):
             utils.access_nested_map(nested_map, path)
             self.assertEqual(str(cm.exception), str(path[-1]))
 
+
 class TestGetJson(unittest.TestCase):
     """TestGetJson class"""
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
-    def test_get_json(self, test_url: str, test_payload: Dict[str, Any]) -> None:
+    def test_get_json(self, url: str, payload: Dict[str, Any]) -> None:
         """Test get_json with various inputs"""
         with patch('utils.requests.get') as mock_get:
             mock_response = Mock()
-            mock_response.json.return_value = test_payload
+            mock_response.json.return_value = payload
             mock_get.return_value = mock_response
-            result = utils.get_json(test_url)
-            mock_get.assert_called_once_with(test_url)
+            result = utils.get_json(url)
+            mock_get.assert_called_once_with(url)
             self.assertEqual(result, test_payload)
+
 
 class TestMemoize(unittest.TestCase):
     """Test cases for memoize decorator"""
+
     def test_memoize(self) -> None:
         """Test memoize decorator"""
+
         class TestClass:
             def a_method(self):
                 return 42
+
             @utils.memoize
             def a_property(self):
                 return self.a_method()
-        with patch.object(TestClass, 'a_method', return_value=42) as mock_method:
+        with patch.object(TestClass, 'a_method', return_value=42) as mock_:
             test_instance = TestClass()
             result1 = test_instance.a_property
             result2 = test_instance.a_property
             self.assertEqual(result1, 42)
             self.assertEqual(result2, 42)
-            mock_method.assert_called_once()
+            mock_.assert_called_once()
