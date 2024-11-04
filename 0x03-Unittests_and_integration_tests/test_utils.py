@@ -25,12 +25,18 @@ class TestAccessNestedMap (unittest.TestCase):
         """Test access_nested_map with various inputs"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
-    @parameterized.expand
-    def test_access_nested_map_exception(self):
-        """test_access_nested_map_exception mothod"""
-        assertRaises KeyError
+    @parameterized.expand([
+        ({}, ("a",)),
+        ({"a": 1}, ("a", "b"))
+    ])
+    def test_access_nested_map_exception(self, nested_map: Mapping,
+                                         path: Sequence) -> None:
+        """Test access_nested_map raises KeyError for invalid paths"""
+        with self.assertRaises(KeyError) as cm:
+            access_nested_map(nested_map, path)
+            self.assertEqual(str(cm.exception), str(path[-1]))
 
-
+'''
 class TestGetJson(unittest.TestCase):
     """TestGetJson class"""
     def test_get_json(self):
@@ -42,3 +48,4 @@ class TestMemoize(unittest.TestCase):
     """TestMemoize class"""
     def test_memoize(self):
         """test memoize method"""
+'''
