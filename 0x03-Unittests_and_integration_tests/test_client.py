@@ -6,6 +6,7 @@ GithubOrgClient module
 import requests
 from typing import List
 
+
 class GithubOrgClient:
     """GithubOrgClient class to interact with GitHub API"""
 
@@ -21,5 +22,7 @@ class GithubOrgClient:
         """Return the list of public repositories"""
         repos = requests.get(self._public_repos_url).json()
         if license:
-            repos = [repo for repo in repos if repo.get('license', {}).get('key') == license]
+            repos = [
+                repo for repo in repos if repo.get('license',
+                                                   {}).get('key') == license]
         return [repo['name'] for repo in repos]
