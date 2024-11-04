@@ -14,24 +14,16 @@ from typing import (
 
 class TestAccessNestedMap (unittest.TestCase):
     """TestAccessNestedMap class"""
+    
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
         ])
     def test_access_nested_map(self, nested_map: Mapping, path: Sequence,
-                               ex: Any) -> None:
-        """test Access nested map.
-        Parameters
-        ----------
-        nested_map: Mapping
-        A nested map
-        path: Sequence
-        a sequence of key representing a path to the value
-        ex:
-        expected
-        """
-        self.assertEqual(access_nested_map(nested_map, path), ex)
+                               expected: Any) -> None:
+        """Test access_nested_map with various inputs"""
+        self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand
     def test_access_nested_map_exception(self):
